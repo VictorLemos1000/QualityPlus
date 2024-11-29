@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title># QualityPlus</title>
+    <title></title>
 </head>
 <body>
-    <h1 style="font-family: Arial, sans-serif; font-weight: bold; font-size: 4em; 
-    background: linear-gradient(to right, rgba(0, 213, 228, 0.6), #00e686, rgb(84, 146, 89), #c57600); -webkit-background-clip: text; color: transparent;">QualityPlus+
-</h1>
+     <h1 style="font-family: Arial, sans-serif; font-weight: bold; font-size: 4em; 
+    background: linear-gradient(to right, #00b88a, #006be6, rgba(66, 211, 109, 0.534), #ff0202); -webkit-background-clip: text; color: transparent;">QualityPlus+
+    </h1>
     <br>
     <h4>
         A plataforma QualityPlus+ foi idealizada para que usuários e 
