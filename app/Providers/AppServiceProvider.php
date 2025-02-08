@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Registrar quaisquer serviços da aplicação.
      */
     public function register(): void
     {
@@ -15,10 +15,13 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Inicializar quaisquer serviços da aplicação.
      */
     public function boot(): void
     {
         //
     }
+
+    // Definir constante HOME para redirecionamento após login
+    public const HOME = '/dashboard';
 }
