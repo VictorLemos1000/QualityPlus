@@ -1,6 +1,6 @@
 # QualityPlus+
 
-![QualityPlus+ Logo](https://imgur.com/jzhJJcn)
+![QualityPlus+ Logo](assets/Qualityplus.png)
 
 **QualityPlus+** é uma plataforma inovadora que facilita a integração de empresas e lojas ao site, auxiliando os usuários a encontrá-las. Com um sistema semelhante à Amazon, mas sem a funcionalidade de compra, o objetivo do QualityPlus+ é mostrar os preços dos itens próximos ao usuário, informando em quais lojas estão disponíveis. Além disso, o sistema se integra ao **Google Maps** para exibir a localização das lojas e oferece uma ferramenta de **comparação de itens e preços**.
 
@@ -16,7 +16,7 @@
 
 ## 📷 Captura de Tela
 
-![Tela Inicial](https://imgur.com/a/jJKdPu6)
+![Tela Inicial](assets/tela_inicial.png)
 
 ---
 
