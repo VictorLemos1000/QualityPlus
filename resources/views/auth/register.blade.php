@@ -15,6 +15,12 @@
             height: 100vh;
             background: linear-gradient(to bottom, #00B88A, #006BE6);
         }
+
+        .register-container img {
+            width: 250px;
+            margin-bottom: 20px;
+        }
+
         .register-container {
             background: white;
             border-radius: 20px;
@@ -45,6 +51,7 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 10px;
             transition: background 0.3s ease;
         }
         .register-container button:hover {
@@ -62,7 +69,8 @@
 </head>
 <body>
     <div class="register-container">
-        <h1>Registrar</h1>
+        <img src="/images/Qualityplus.png" alt="QualityPlus+ Logo">
+        <!--<h1>Registrar</h1>-->
         <form method="POST" action="{{ route('register') }}">
             @csrf
             <input type="text" name="name" placeholder="Nome" required>

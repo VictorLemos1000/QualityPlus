@@ -48,6 +48,7 @@
             border: none;
             border-radius: 5px;
             font-size: 16px;
+            margin-top: 10px;
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -67,7 +68,7 @@
 <body>
     <div class="login-container">
         <img src="/images/Qualityplus.png" alt="QualityPlus+ Logo">
-        <h1>Login</h1>
+        <!--<h1>Login</h1>-->
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <input type="email" id="email" name="email" placeholder="Email" required>
