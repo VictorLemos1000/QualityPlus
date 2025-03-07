@@ -3,7 +3,7 @@
 @section('content')
 <div class="profile-header">
     <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
-    <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/Perfil.png') }}" 
+    <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
      alt="Mini Perfil" 
      class="header-profile-image" 
      id="header-profile-image">
@@ -11,7 +11,7 @@
 <div class="profile-container">
     <div class="profile-card">
         <div class="profile-image">
-        <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/Perfil.png') }}" 
+        <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
      alt="Imagem do Perfil" 
      id="profile-image">
         </div>
