@@ -45,11 +45,12 @@
         <a href="{{ route('empresa.create') }}" class="btn-create">Criar Empresa</a>
     </div>
 
-    <!-- Lista de Empresas -->
-    <section class="categories mt-4">
-        <h4 class="highlight-title">Perto de você!</h4>
-        <div class="items">
-            @foreach ($empresas as $empresa)
+   <!-- Lista de Empresas -->
+<section class="categories mt-4">
+    <h4 class="highlight-title">Perto de você!</h4>
+    <div class="items">
+        @foreach ($empresas as $empresa)
+            <a href="{{ route('empresa.sobre', ['id' => $empresa->id]) }}" class="item-link">
                 <div class="item">
                     <img src="{{ asset('storage/' . $empresa->imagem) }}" alt="{{ $empresa->nome }}" class="img-fluid rounded">
                     <div>
@@ -59,9 +60,11 @@
                         </span>
                     </div>
                 </div>
-            @endforeach
-        </div>
-    </section>
+            </a>
+        @endforeach
+    </div>
+</section>
+
 
     <!-- Rodapé -->
     <footer class="footer-custom mt-5">
