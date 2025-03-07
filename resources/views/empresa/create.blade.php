@@ -6,11 +6,9 @@
 <div class="container dashboard-container">
     <!-- Cabeçalho com navegação -->
     <header class="d-flex justify-content-between align-items-center header-custom">
-        <div class="logo">
-            <a href="{{ auth()->check() ? route('dashboard') : route('home') }}">
-                <span class="green">Quality</span><span class="blue">Plus+</span>
-            </a>
-        </div>
+        <a href="{{ route('dashboard') }}">
+            <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
+        </a>
         <nav class="nav-custom">
             <ul class="d-flex list-unstyled m-0">
                 <li><a href="{{ route('about') }}">Sobre</a></li>
@@ -20,16 +18,19 @@
 
         <!-- Ícone de perfil e logout -->
         <div class="profile-logout d-flex align-items-center">
-            <div class="profile-icon">
-                <img src="{{ asset('images/perfil.png') }}" alt="Perfil" class="rounded-circle" width="40" height="40">
-            </div>
-            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+        <a href="{{ route('perfil') }}">
+        <img src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
+             alt="Mini Perfil" 
+             class="header-profile-image" 
+             id="header-profile-image">
+        </a>
+        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="logout-btn btn btn-link text-dark">
                     <i class="fa fa-sign-out"></i> Sair
                 </button>
             </form>
-        </div>
+            </div>
     </header>
 
     <!-- Formulário para criar a empresa -->

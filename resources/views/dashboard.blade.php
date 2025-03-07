@@ -23,7 +23,6 @@
              alt="Mini Perfil" 
              class="header-profile-image" 
              id="header-profile-image">
-             
     </a>
     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
@@ -198,10 +197,6 @@
     padding-left: 20px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
-}
-
-.profile-logo {
-    height: 40px;
 }
 
 .header-profile-image {

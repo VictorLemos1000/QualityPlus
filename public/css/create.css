@@ -114,3 +114,22 @@
 .empresa-form button:hover {
     background: #009874;
 }
+
+.header-profile-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.profile-logo {
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+    height: 40px; /* Ajuste conforme o tamanho da logo */
+}
+
+.profile-logo:hover {
+    opacity: 0.8;
+}
