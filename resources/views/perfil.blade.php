@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.perfil')
 
 @section('content')
 <div class="profile-header">
-    <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
+    <a href="{{ route('dashboard') }}">
+        <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
+    </a>
     <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
      alt="Mini Perfil" 
      class="header-profile-image" 

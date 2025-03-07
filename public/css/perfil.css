@@ -19,7 +19,13 @@
 }
 
 .profile-logo {
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
     height: 40px; /* Ajuste conforme o tamanho da logo */
+}
+
+.profile-logo:hover {
+    opacity: 0.8;
 }
 
 .profile-container {
