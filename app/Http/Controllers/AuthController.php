@@ -17,7 +17,8 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (auth()->attempt($credentials)) {
+        if (auth()->attempt($credentials))
+        {
             return redirect()->route('dashboard'); // Redireciona para o painel ou página inicial
         }
 
