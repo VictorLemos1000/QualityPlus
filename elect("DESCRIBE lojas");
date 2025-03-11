@@ -1,0 +1,45 @@
+[90m= [39m[
+    {#6236
+      +"[1mTables_in_qualityplus[22m": "[32mavaliacaos[39m",
+    },
+    {#6237
+      +"[1mTables_in_qualityplus[22m": "[32mcache[39m",
+    },
+    {#6238
+      +"[1mTables_in_qualityplus[22m": "[32mcache_locks[39m",
+    },
+    {#6239
+      +"[1mTables_in_qualityplus[22m": "[32mcomparador_precos[39m",
+    },
+    {#6234
+      +"[1mTables_in_qualityplus[22m": "[32mempresas[39m",
+    },
+    {#6233
+      +"[1mTables_in_qualityplus[22m": "[32mfailed_jobs[39m",
+    },
+    {#6232
+      +"[1mTables_in_qualityplus[22m": "[32mjob_batches[39m",
+    },
+    {#6231
+      +"[1mTables_in_qualityplus[22m": "[32mjobs[39m",
+    },
+    {#6230
+      +"[1mTables_in_qualityplus[22m": "[32mlojas[39m",
+    },
+    {#6229
+      +"[1mTables_in_qualityplus[22m": "[32mmigrations[39m",
+    },
+    {#6228
+      +"[1mTables_in_qualityplus[22m": "[32mpassword_reset_tokens[39m",
+    },
+    {#6227
+      +"[1mTables_in_qualityplus[22m": "[32mprodutos[39m",
+    },
+    {#6226
+      +"[1mTables_in_qualityplus[22m": "[32msessions[39m",
+    },
+    {#6225
+      +"[1mTables_in_qualityplus[22m": "[32musers[39m",
+    },
+  ]
+
