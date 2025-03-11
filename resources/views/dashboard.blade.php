@@ -7,11 +7,17 @@
     <!-- Cabeçalho com navegação -->
     <header class="d-flex justify-content-between align-items-center header-custom">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div class="logo">
             <a href="{{ auth()->check() ? route('dashboard') : route('home') }}">
                 <span class="green">Quality</span><span class="blue">Plus+</span>
             </a>
         </div>
+=======
+        <a href="{{ route('dashboard') }}">
+            <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
+        </a>
+>>>>>>> Stashed changes
 =======
         <a href="{{ route('dashboard') }}">
             <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
@@ -27,16 +33,22 @@
         <!-- Ícone de perfil e logout -->
         <div class="profile-logout d-flex align-items-center">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <div class="profile-icon">
                 <img src="{{ asset('images/perfil.png') }}" alt="Perfil" class="rounded-circle" width="40" height="40">
             </div>
 =======
+=======
+>>>>>>> Stashed changes
             <a href="{{ route('perfil') }}">
                 <img src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
                      alt="Mini Perfil" 
                      class="header-profile-image" 
                      id="header-profile-image">
             </a>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
@@ -160,6 +172,7 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     /* Cabeçalho */
     .header-custom {
         background-color: white;
@@ -275,6 +288,8 @@
         letter-spacing: 1px;
     }
 =======
+=======
+>>>>>>> Stashed changes
 /* Cabeçalho */
 .header-custom {
     background-color: white;
@@ -332,6 +347,97 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+<<<<<<< Updated upstream
+=======
+}
+
+.carousel-items {
+    display: flex;
+    transition: transform 0.3s ease;
+    flex-wrap: nowrap;
+}
+
+.carousel-item {
+    width: 150px; 
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.item-card, .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.item-card img, .product-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.item-info, .product-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.item-name, .product-name {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.product-price {
+    color: #006BE6;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.highlight-title {
+    font-size: 16px; /* Títulos menores */
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Setas de Navegação */
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 768px) {
+    .carousel-item {
+        width: 130px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        width: 110px;
+    }
+>>>>>>> Stashed changes
 }
 
 .carousel-items {
