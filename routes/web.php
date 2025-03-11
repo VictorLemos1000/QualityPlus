@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LojaController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ProdutoContoller;
@@ -55,10 +56,24 @@ Route::get('/empresa/{id}/sobre', [EmpresaController::class, 'sobre'])->name('em
 
 // Rotas para produtos
 Route::apiResource('produto', ProdutoContoller::class);
-Route::get('/produto', [ProdutoContoller::class, 'index'])->name('produto.index');
-Route::get('/produto/create', [ProdutoContoller::class, 'create'])->name('produto.create');
+Route::get('/produto', [App\Http\Controllers\ProdutoContoller::class, 'index'])->name('produto.index');
+Route::get('/produto/create', [App\Http\Controllers\ProdutoContoller::class, 'create'])->name('produto.create');
 Route::post('/produto', [ProdutoContoller::class, 'store'])->name('produto.store');
-Route::get('/produto/{id}', [ProdutoContoller::class, 'show'])->name('produto.show');
-Route::get('/produto/{id}/edit', [ProdutoContoller::class, 'update'])->name('produto.edit');
+Route::get('/produto/{id}', [App\Http\Controllers\ProdutoContoller::class, 'show'])->name('produto.show');
+Route::get('/produto/{id}/edit', [App\Http\Controllers\ProdutoContoller::class, 'update'])->name('produto.edit');
 Route::put('/produto/{id}', [ProdutoContoller::class, 'update'])->name('produto.update');
 Route::delete('produto/{id}', [ProdutoContoller::class, 'destroy'])->name('produto.destroy');
+
+// Rotas para loja
+Route::resource('lojas', LojaController::class);
+Route::get('/lojas', [LojaController::class, 'index'])->name('lojas.index');
+Route::get('/lojas/create', [LojaController::class, 'create'])->name('lojas.create');
+Route::post('/lojas', [LojaController::class, 'store'])->name('lojas.store');
+Route::get('/lojas/{id}', [LojaController::class, 'show'])->name('lojas.show');
+Route::get('/lojas/{id}/edit', [LojaController::class, 'edit'])->name('lojas.edit');
+Route::put('/lojas/{id}', [LojaController::class, 'update'])->name('lojas.update');
+Route::delete('/lojas/{id}', [LojaController::class, 'destroy'])->name('lojas.destroy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
