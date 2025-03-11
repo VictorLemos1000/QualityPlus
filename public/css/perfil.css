@@ -1,0 +1,215 @@
+.header-profile-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.profile-header {
+    width: 99%;
+    height: 55px; /* Ajuste a altura conforme necessário */
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional para separação */
+    justify-content: space-between;
+}
+
+.profile-logo {
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+    height: 40px; /* Ajuste conforme o tamanho da logo */
+}
+
+.profile-logo:hover {
+    opacity: 0.8;
+}
+
+.profile-container {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    background: linear-gradient(to bottom, #00c6ff, #0072ff);
+    min-height: 85vh;
+    width: 96%;
+}
+
+.profile-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    position: relative;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.role-tag {
+    background: #006BE6;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.logout-button {
+    background: transparent; /* Fundo transparente */
+    color: black; /* Texto preto */
+    border: 2px solid red; /* Borda vermelha */
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 420px;
+}
+
+
+.bio-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+
+.edit-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Profile Details */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-item label {
+    font-weight: 500;
+    color: #666;
+}
+
+/* Formulário de edição */
+.edit-form .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-form h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.edit-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.about-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.about-text {
+    display: block;
+    min-height: 50px;
+    color: #666;
+}
+
+/* Campos vazios */
+.display-field:empty::before {
+    content: attr(data-empty-message);
+    color: #999;
+    font-style: italic;
+}
+
+/* Input placeholders */
+.edit-field::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.edit-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.save-button, .cancel-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-button {
+    background: #4CAF50;
+    color: white;
+}
+
+.cancel-button {
+    background: #f44336;
+    color: white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Mensagens de feedback */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+/* Estilo do botão Criar Empresa */
+.create-company-button {
+    background-color: #3e8e41; /* Cor verde mais suave */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.create-company-button:hover {
+    background-color: #2d6a2b; /* Tom mais escuro para o hover */
+}
+
+.create-company-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(60, 110, 60, 0.5); /* Destaque ao focar */
+}
