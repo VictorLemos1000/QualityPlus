@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loja;
+use Exception;
 use Illuminate\Http\Request;
+use RuntimeException;
 
 class LojaController extends Controller
 {
@@ -13,9 +15,15 @@ class LojaController extends Controller
     public function index()
     {
         //
-        $lojas = Loja::all();
+        try {
+            //code...
+            $lojas = Loja::all();
 
-        return view('lojas.index', compact('lojas'));
+            return view('lojas.index', compact('lojas'));
+        } catch (RuntimeException $excecao) {
+            //throw $th;
+            return back()->withErrors('Erro ao listar lojas: ',  $excecao->getMessage());
+        }
     }
 
     /**
@@ -24,7 +32,13 @@ class LojaController extends Controller
     public function create()
     {
         //
-        return view('lojas');
+        try {
+            //code...
+            return view('lojas.create');
+        } catch (RuntimeException $excecao) {
+            //throw $th;
+            return back()->withErrors('Erro ao carregar o formulário: ' . $excecao->getMessage());
+        }
     }
 
     /**
@@ -33,15 +47,21 @@ class LojaController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'url' => 'required|url|unique:lojas',
-            'avaliacao' => 'required|numeric|min:0|max:5',
-        ]);
+        try {
+            //code...
+            $request->validate([
+                'nome' => 'required|string|max:255',
+                'url' => 'required|url|unique:lojas',
+                'avaliacao' => 'required|numeric|min:0|max:5',
+            ]);
 
-        Loja::create($request->all());
+            Loja::create($request->all());
 
-        return redirect()->route('lojas.index')->with('sucess', 'Loja criada com sucesso!');
+            return redirect()->route('lojas.index')->with('sucess', 'Loja criada com sucesso!');
+        } catch (RuntimeException $excecao) {
+            //throw $th;
+            return back()->withErrors('Erro ao criar loja', $excecao->getMessage());
+        }
     }
 
     /**
@@ -50,9 +70,15 @@ class LojaController extends Controller
     public function show(string $id)
     {
         //
-        $loja = Loja::findOrFail($id);
+        try {
+            //code...
+            $loja = Loja::findOrFail($id);
 
-        return view('lojas.show', compact('loja'));
+            return view('lojas.show', compact('loja'));
+        } catch (RuntimeException $excecao) {
+            //throw $th;
+            return back()->withErrors('Erro ao vizualizar loja: ', $excecao->getMessage());
+        }
     }
 
     /**
@@ -61,9 +87,15 @@ class LojaController extends Controller
     public function edit(string $id)
     {
         //
-        $loja = Loja::findOrFail($id);
+        try {
+            //code...
+            $loja = Loja::findOrFail($id);
 
-        return view('lojas.form', compact('loja'));
+            return view('lojas.form', compact('loja'));
+        } catch (RuntimeException $excecao) {
+            //throw $th;
+            return back()->withErrors('Erro ao carregar formulário de edição: ', $excecao->getMessage());
+        }
     }
 
     /**
@@ -72,17 +104,23 @@ class LojaController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $loja = Loja::findOrFail($id);
+        try {
+            //code...
+            $loja = Loja::findOrFail($id);
 
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'url' => 'required|url|unique:lojas,url,' . $loja->id,
-            'avaliacao' => 'required|numeric|min:0|max:5',
-        ]);
+            $request->validate([
+                'nome' => 'required|string|max:255',
+                'url' => 'required|url|unique:lojas,url,' . $loja->id,
+                'avaliacao' => 'required|numeric|min:0|max:5',
+            ]);
 
-        $loja->update($request->all());
+            $loja->update($request->all());
 
-        return redirect()->route('lojas.index')->with('sucess', 'Loja atualizada com sucesso!');
+            return redirect()->route('lojas.index')->with('sucess', 'Loja atualizada com sucesso!');
+        } catch (RuntimeException $excecao) {
+            //throw $th;
+            return back()->withErrors('Erro ao atualizar loja: ', $excecao->getMessage());
+        }
     }
 
     /**
@@ -91,8 +129,15 @@ class LojaController extends Controller
     public function destroy(string $id)
     {
         //
-        Loja::destroy($id);
+        try {
+            //code...
+            $loja = Loja::findOrFail($id);
+            $loja->delete();
 
-        return redirect()->route('lojas.index')->with('sucess', 'Loja excluída com sucesso!');
+            return redirect()->route('lojas.index')->with('sucess', 'Loja excluída com sucesso!');
+        } catch (RuntimeException $excecao) {
+            //throw $th;
+            return back()->withErrors('Erro ao exluir loja: ', $excecao->getMessage());
+        }
     }
 }
