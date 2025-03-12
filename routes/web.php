@@ -50,7 +50,10 @@ Route::post('/avaliar-item', [AvaliacaoController::class, 'avaliarItem'])
 // Rotas para gerenciamento de empresas (protegidas por autenticação)
 Route::middleware('auth')->group(function () {
     Route::get('/empresa/create', [EmpresaController::class, 'create'])->name('empresa.create');
-    Route::post('/empresa', [EmpresaController::class, 'store'])
-        ->name('empresa.store')
-        ->middleware('auth'); // Garantindo que a rota de criação de empresa está protegida
+    Route::post('/empresa', [EmpresaController::class, 'store'])->name('empresa.store');
+    Route::get('/empresa/{id}/edit', [EmpresaController::class, 'edit'])->name('empresa.edit');  // Rota para exibir o formulário de edição
+    Route::put('/empresa/{id}', [EmpresaController::class, 'update'])->name('empresa.update');  // Rota para atualizar a empresa
 });
+
+// Rota para visualizar informações sobre uma empresa específica
+Route::get('/empresa/{id}/sobre', [EmpresaController::class, 'sobre'])->name('empresa.sobre');
