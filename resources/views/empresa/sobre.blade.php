@@ -5,35 +5,23 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/EpSobre.css') }}">
 
-<div class="container sobre-container">
-    <header class="d-flex justify-content-between align-items-center px-4 py-2 header-custom">
-        <!-- Logo -->
-        <div class="logo">
-            <a href="{{ auth()->check() ? route('dashboard') : route('home') }}">
-                <span class="green">Quality</span><span class="blue">Plus+</span>
-            </a>
-        </div>
+<header class="profile-header">
+    <div class="header-left">
+        <a href="{{ route('dashboard') }}">
+            <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
+        </a>
+    </div>
 
-        <!-- Navegação -->
-        <nav class="nav-custom">
-            <ul class="d-flex list-unstyled m-0">
-                <li><a href="{{ route('about') }}" class="btn-custom">Sobre</a></li>
-                <li><a href="{{ route('contact') }}" class="btn-custom">Contato</a></li>
-            </ul>
-        </nav>
-
-        <!-- Perfil e Logout -->
-        <div class="profile-logout d-flex align-items-center">
-            <div class="profile-icon">
-                <img src="{{ asset('images/perfil.png') }}" alt="Perfil" class="rounded-circle">
-            </div>
-
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="logout-btn">Sair</button>
-            </form>
-        </div>
-    </header>
+    <!-- Ícone de perfil -->
+    <div class="profile-section">
+        <a href="{{ route('perfil') }}">
+            <img src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
+                 alt="Mini Perfil" 
+                 class="header-profile-image" 
+                 id="header-profile-image">
+        </a>
+    </div>
+</header>
 
     <section class="sobre-content py-5">
         <div class="container">

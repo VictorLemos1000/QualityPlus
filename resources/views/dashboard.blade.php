@@ -3,219 +3,442 @@
 @section('title', 'Página Inicial')
 
 @section('content')
-<div class="container dashboard-container">
-    <!-- Cabeçalho com navegação -->
-    <header class="d-flex justify-content-between align-items-center header-custom">
-    <a href="{{ route('dashboard') }}">
-        <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
-    </a>
-        <nav class="nav-custom">
-            <ul class="d-flex list-unstyled m-0">
-                <li><a href="{{ route('about') }}">Sobre</a></li>
-                <li><a href="{{ route('contact') }}">Contato</a></li>
-            </ul>
-        </nav>
-
-        <!-- Ícone de perfil e logout -->
-        <div class="profile-logout d-flex align-items-center">
-    <a href="{{ route('perfil') }}">
-        <img src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
-             alt="Mini Perfil" 
-             class="header-profile-image" 
-             id="header-profile-image">
-    </a>
-    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="logout-btn btn btn-link text-dark">
-                    <i class="fa fa-sign-out"></i> Sair
-                </button>
-            </form>
-            </div>
-            
-
-    </header>
-
-    <!-- Banner -->
-    <div class="banner mt-3">
-        <img src="{{ asset('images/banner.png') }}" class="img-fluid rounded" alt="Banner">
+<!-- Cabeçalho com navegação -->
+<header class="profile-header">
+    <div class="header-left">
+        <a href="{{ route('dashboard') }}">
+            <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
+        </a>
     </div>
 
-    <!-- Barra de Pesquisa e Criar Empresa -->
-    <div class="search-container mt-4">
-        <div class="search-wrapper">
-            <input type="text" class="form-control search-input" placeholder="Pesquisar...">
+    <!-- Ícone de perfil -->
+    <div class="profile-section">
+        <a href="{{ route('perfil') }}">
+            <img src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
+                 alt="Mini Perfil" 
+                 class="header-profile-image" 
+                 id="header-profile-image">
+        </a>
+    </div>
+</header>
+
+<!-- Conteúdo principal -->
+<div class="main-container">
+    <!-- Banner com mapa -->
+    <div class="banner-container">
+        <div class="banner-text">
+            <h2>Veja qualquer loja perto de</h2>
+            <h2>você em tempo Real</h2>
         </div>
-        <a href="{{ route('empresa.create') }}" class="btn-create">Criar Empresa</a>
-    </div>
-
-   <!-- Lista de Empresas -->
-<section class="categories mt-4">
-    <h4 class="highlight-title">Perto de você!</h4>
-    <div class="items">
-        @foreach ($empresas as $empresa)
-            <a href="{{ route('empresa.sobre', ['id' => $empresa->id]) }}" class="item-link">
-                <div class="item">
-                    <img src="{{ asset('storage/' . $empresa->imagem) }}" alt="{{ $empresa->nome }}" class="img-fluid rounded">
-                    <div>
-                        <p>{{ $empresa->nome }}</p>
-                        <span class="badge bg-warning text-dark">
-                            {{ $empresa->status ? 'Ativa' : 'Inativa' }}
-                        </span>
-                    </div>
-                </div>
+        <div class="banner-map">
+            <a href="{{ route('lojas-mapa') }}">
+                <img src="{{ asset('images/google-maps.png') }}" alt="Mapa Google" class="map-image">
             </a>
-        @endforeach
+        </div>
     </div>
-</section>
 
-
-    <!-- Rodapé -->
-    <footer class="footer-custom mt-5">
-        <p><i class="fas fa-envelope"></i> Quality@gmail.com</p>
-        <p><i class="fab fa-instagram"></i> @QualityPlus</p>
-        <p><i class="fab fa-whatsapp"></i> (91) 99234-3498</p>
-    </footer>
+    <!-- Listagem de empresas -->
+    <section class="categories">
+        <h3 class="section-title">Perto de você!</h3>
+        
+        <div class="items">
+            @foreach ($empresas as $empresa)
+                <a href="{{ route('empresa.sobre', ['id' => $empresa->id]) }}" class="item-card">
+                    <div class="rating">4.5 ⭐</div>
+                    <div class="item-img">
+                        <img src="{{ asset('storage/' . $empresa->imagem) }}" alt="{{ $empresa->nome }}">
+                    </div>
+                    <div class="item-name">{{ $empresa->nome }}</div>
+                </a>
+            @endforeach
+        </div>
+        
+        <h3 class="section-title">Alimentos</h3>
+        <div class="items">
+            <a href="{{ route('alimentos.maca') }}" class="item-card">
+                <div class="item-img">
+                    <img src="{{ asset('images/maca.png') }}" alt="Maçã">
+                </div>
+                <div class="item-name">Maçã</div>
+            </a>
+            <!-- Espaços para mais itens -->
+            <div class="item-card empty"></div>
+            <div class="item-card empty"></div>
+        </div>
+        
+        <h3 class="section-title">Artesanato</h3>
+        <div class="items">
+            <div class="item-card empty"></div>
+            <!-- Espaços para mais itens -->
+        </div>
+        
+        <h3 class="section-title">Tecnologia</h3>
+        <div class="items">
+            <div class="item-card empty"></div>
+            <!-- Espaços para mais itens -->
+        </div>
+    </section>
 </div>
+
+<!-- Rodapé -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-item">
+            <img src="{{ asset('images/Email.png') }}" alt="Email" class="footer-icon">
+            <span>Quality@gmail.com</span>
+        </div>
+        <div class="footer-item">
+            <img src="{{ asset('images/Instagram.png') }}" alt="Instagram" class="footer-icon">
+            <span>@QualityPlus</span>
+        </div>
+        <div class="footer-item">
+            <img src="{{ asset('images/WhatsApp.png') }}" alt="WhatsApp" class="footer-icon">
+            <span>(91) 98934-3498</span>
+        </div>
+    </div>
+</footer>
+
+<!-- Logout Form (escondido mas acessível para JavaScript) -->
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
 @endsection
 
 @push('styles')
 <style>
-    /* Container principal */
-    .dashboard-container {
-        padding: 40px;
-        margin: 30px auto;
+    /* Reset e estilos globais */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-
-    /* Cabeçalho */
-    .header-custom {
-        background-color: white;
-        padding: 15px 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    /* Header */
+    .profile-header {
+        position: sticky;
+        top: 0;
         width: 100%;
+        height: 65px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
     }
-
-    /* Navegação – aqui definimos o gradiente e o texto branco */
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+    }
+    
+    .profile-logo {
+        height: 40px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+    
+    .profile-logo:hover {
+        opacity: 0.8;
+    }
+    
     .nav-custom ul {
-        gap: 20px;
+        display: flex;
+        gap: 15px;
     }
+    
     .nav-custom a {
         text-decoration: none;
-        font-weight: bold;
-        /* Texto branco */
-        color: #fff;
-        padding: 8px 12px;
-        transition: 0.3s;
-        /* Gradiente com base em #006BE6; aqui usei uma variação de tonalidade */
-        background: linear-gradient(to right, #006BE6, #007CE0);
-        border-radius: 25px;
+        color: #333;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
     }
+    
     .nav-custom a:hover {
-        /* Inverte ou ajusta o gradiente no hover */
-        background: linear-gradient(to right, #007CE0, #006BE6);
+        background-color: #f0f0f0;
     }
-
-    /* Rodapé */
-    .footer-custom {
-        background: linear-gradient(to right, #006BE6, #0052cc);
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        border-radius: 0 0 10px 10px;
-    }
-
-    /* Botão Criar Empresa */
-    .btn-create {
-        background: #00B88A;
-        color: #fff;
-        font-weight: bold;
-        padding: 10px 16px;
-        border-radius: 25px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        font-size: 14px;
-    }
-    .btn-create:hover {
-        background: #009d80;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Área de Pesquisa */
-    .search-container {
+    
+    .profile-section {
         display: flex;
         align-items: center;
-        gap: 15px;
-        justify-content: center;
     }
-    .search-wrapper {
+    
+    .header-profile-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid #f0f0f0;
+    }
+    
+    /* Container principal */
+    .main-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    /* Banner */
+    .banner-container {
         position: relative;
         display: flex;
-        align-items: center;
-        background: #f1f1f1;
-        border-radius: 20px;
-        padding: 8px 12px;
-        width: 280px;
+        background-color: #111;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 30px;
+        height: 210px;
     }
-    .search-wrapper::before {
-        content: "";
+    
+    .banner-text {
+        flex: 1;
+        color: white;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .banner-text h2 {
+        font-size: 24px;
+        margin: 5px 0;
+    }
+    
+    .banner-map {
+        flex: 1;
+        overflow: hidden;
+    }
+    
+    .map-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .banner-controls {
         position: absolute;
-        left: 12px;
+        width: 100%;
         top: 50%;
         transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    
+    .banner-arrow {
+        width: 30px;
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Área de pesquisa */
+    .search-section {
+        margin-bottom: 30px;
+    }
+    
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .search-wrapper {
+        position: relative;
+        width: 300px;
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
         background: url('{{ asset('images/lupa.png') }}') no-repeat center;
         background-size: contain;
     }
+    
     .search-input {
-        border: none;
-        outline: none;
-        background: transparent;
-        font-size: 14px;
         width: 100%;
-        padding-left: 35px;
+        padding: 12px 12px 12px 40px;
+        border: none;
+        border-radius: 25px;
+        background-color: #f0f0f0;
+        font-size: 14px;
     }
-
-    /* Destaque do Título "Perto de Você!" */
-    .highlight-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #006BE6;
-        text-align: center;
+    
+    .btn-create {
+        padding: 12px 20px;
+        background: linear-gradient(to right, #00B88A, #00A070);
+        color: white;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-create:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Categorias e itens */
+    .categories {
+        padding: 20px 0;
+    }
+    
+    .section-title {
+        font-size: 20px;
         margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        color: #333;
     }
-
-    .profile-header {
-    width: 100%;
-    height: 55px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    justify-content: space-between;
-}
-
-.header-profile-image {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-.profile-logo {
-    cursor: pointer;
-    transition: opacity 0.2s ease-in-out;
-    height: 40px; /* Ajuste conforme o tamanho da logo */
-}
-
-.profile-logo:hover {
-    opacity: 0.8;
-}
+    
+    .items {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .item-card {
+        position: relative;
+        background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+    
+    .item-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .rating {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 3px 6px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 1;
+    }
+    
+    .item-img {
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+    }
+    
+    .item-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .item-name {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .item-card.empty {
+        background-color: #f5f5f5;
+        min-height: 150px;
+    }
+    
+    /* Rodapé */
+    .footer {
+        background-color: #000;
+        color: white;
+        padding: 20px 0;
+        margin-top: 40px;
+    }
+    
+    .footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .footer-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .footer-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .banner-container {
+            flex-direction: column;
+            height: auto;
+        }
+        
+        .banner-text {
+            padding: 20px;
+        }
+        
+        .search-container {
+            flex-direction: column;
+        }
+        
+        .search-wrapper {
+            width: 100%;
+        }
+        
+        .items {
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        }
+        
+        .footer-content {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
 </style>
 @endpush

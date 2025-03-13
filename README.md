@@ -23,8 +23,11 @@
 ## 📌 Funcionalidades
 
 ✅ Localização de lojas próximas ao usuário 
+
 ✅ Comparação de preços entre diferentes lojas 
+
 ✅ Sistema de autenticação com criação de conta e perfis 
+
 ✅ Integração com Google Maps para visualização das lojas 
 
 ---

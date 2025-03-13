@@ -7,6 +7,8 @@
     <!-- Link para o arquivo de estilos -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/maps/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Estilos adicionais (se houver) -->
     @stack('styles')
@@ -15,5 +17,8 @@
     <div class="container">
         @yield('content')
     </div>
+    
+    <!-- Scripts -->
+    @yield('scripts')
 </body>
 </html>

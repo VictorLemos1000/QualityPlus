@@ -55,7 +55,7 @@
 }
 
 .role-tag {
-    background: #006BE6;
+    background: #df9816;
     color: white;
     padding: 15px 30px;
     border-radius: 50px;
@@ -190,3 +190,31 @@
     color: #3c763d;
     border: 1px solid #d6e9c6;
 }
+
+.create-company-button {
+    display: inline-block;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+    padding: 12px 0px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.create-company-button:hover {
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.create-company-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+

@@ -9,12 +9,6 @@
         <a href="{{ route('dashboard') }}">
             <img src="{{ asset('images/Qualityplus.png') }}" alt="QualityPlus Logo" class="profile-logo">
         </a>
-        <nav class="nav-custom">
-            <ul class="d-flex list-unstyled m-0">
-                <li><a href="{{ route('about') }}">Sobre</a></li>
-                <li><a href="{{ route('contact') }}">Contato</a></li>
-            </ul>
-        </nav>
 
         <!-- Ícone de perfil e logout -->
         <div class="profile-logout d-flex align-items-center">

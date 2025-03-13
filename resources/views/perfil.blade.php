@@ -7,7 +7,7 @@
     </a>
     <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
      alt="Mini Perfil" 
-     class="header-profile-image" 
+     class="header-profile-image"   
      id="header-profile-image">
 </div>
 <div class="profile-container">
@@ -20,8 +20,14 @@
 
         <div class="profile-info">
             <h2>{{ $user->name }}</h2>
-            <span class="role-tag">Cliente</span>
+            <span class="role-tag">Gerente</span>
         </div>
+
+        <div class="form-group">
+                <a href="{{ route('empresa.create') }}" class="create-company-button" id="create-company-button">
+                    Criar Empresa
+                </a>
+            </div>
 
         <img src="{{ asset('images/Edit.png') }}" alt="Editar" id="edit-button" class="edit-icon">
 
@@ -37,7 +43,7 @@
             <div class="form-group">
                 <h3>Nome</h3>
                 <span class="display-field" id="display-name">{{ $user->name }}</span>
-                <input type="text" name="name" class="edit-field hidden" value="{{ $user->name }}">
+                <input type="text" name="name" class="edit-field hidden" value="{{ $user->name }}" required>
             </div>
 
             <div class="form-group">
@@ -51,7 +57,7 @@
                         <input type="text" name="birth_date" class="edit-field hidden birth-date-input" 
                                value="{{ $user->birth_date }}"
                                placeholder="DD/MM/AAAA"
-                               maxlength="10">
+                               maxlength="10" required>
                     </div>
                     
                     <div class="detail-item">
@@ -61,7 +67,7 @@
                         </span>
                         <input type="email" name="contact_email" class="edit-field hidden" 
                                value="{{ $user->contact_email }}"
-                               placeholder="SeuContato@email.com">
+                               placeholder="SeuContato@email.com" required>
                     </div>
                     
                     <div class="detail-item">
@@ -71,7 +77,7 @@
                         </span>
                         <input type="tel" name="phone" class="edit-field hidden phone-input" 
                                value="{{ $user->phone }}"
-                               placeholder="Digite seu telefone">
+                               placeholder="Digite seu telefone" required>
                     </div>
                 </div>
             </div>
@@ -88,7 +94,6 @@
                 <h3>Foto de Perfil</h3>
                 <input type="file" name="profile_image" class="edit-field" accept="image/*">
             </div>
-
             <div class="edit-buttons hidden">
                 <button type="submit" class="save-button" id="save-button">Salvar</button>
                 <button type="button" class="cancel-button" id="cancel-button">Cancelar</button>
@@ -128,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const phoneInput = document.querySelector('.phone-input');
     const birthDateInput = document.querySelector('.birth-date-input');
     const photoUpload = document.querySelector('.photo-upload');
+    const createCompanyButton = document.getElementById('create-company-button'); // Novo ID para o botão
 
     function toggleEditMode(isEditing) {
         displayFields.forEach(field => {
@@ -140,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         editButtons.classList.toggle('hidden', !isEditing);
         photoUpload.classList.toggle('hidden', !isEditing);
+
+        // Esconde ou mostra o botão "Criar Empresa" dependendo do modo de edição
+        createCompanyButton.classList.toggle('hidden', isEditing);
     }
 
     editButton.addEventListener('click', () => {

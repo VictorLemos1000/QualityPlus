@@ -42,11 +42,11 @@
             font-weight: bold;
             padding: 12px 20px;
             border-radius: 25px;
-            background: linear-gradient(to right, #006BE6, #008CFF);
+            background: linear-gradient(to right,rgb(29, 33, 37),rgba(1, 3, 5, 0.59));
             transition: all 0.3s ease;
         }
         header nav ul li a:hover {
-            background: linear-gradient(to right, #008CFF, #006BE6);
+            background: linear-gradient(to right,rgb(224, 225, 226),rgb(243, 243, 243));
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
@@ -64,8 +64,6 @@
         <nav>
             <ul>
                 <!-- Removido o "Home" -->
-                <li><a href="{{ route('about') }}">Sobre</a></li>
-                <li><a href="{{ route('contact') }}">Contato</a></li>
                 <li><a href="{{ route('login') }}" class="btn-header">Entrar</a></li>
             </ul>
         </nav>

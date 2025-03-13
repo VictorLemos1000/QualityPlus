@@ -51,4 +51,14 @@ class ProfileController extends Controller
     
         return redirect()->route('perfil')->with('success', 'Perfil atualizado com sucesso!');
     }
+    
+    // Novo método para atualizar o papel do usuário para gerente
+    public function updateRole(Request $request)
+    {
+        $user = Auth::user();
+        $user->role = 'gerente';
+        $user->save();
+        
+        return response()->json(['success' => true]);
+    }
 }

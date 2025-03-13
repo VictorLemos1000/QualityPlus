@@ -8,11 +8,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MapaLojasController;
+use App\Http\Controllers\AlimentosController;
 use Illuminate\Support\Facades\Auth;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/perfil', [ProfileController::class, 'index'])->name('perfil');
     Route::post('/perfil/update', [ProfileController::class, 'update'])->name('perfil.update');
+    Route::post('/perfil/update-role', [ProfileController::class, 'updateRole'])->name('perfil.updateRole');
 });
 
 // Página inicial (Home)
@@ -49,3 +52,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::post('/avaliar-item', [AvaliacaoController::class, 'avaliarItem'])->middleware('auth')->name('avaliar-item');
 Route::get('/empresa/{id}/sobre', [EmpresaController::class, 'sobre'])->name('empresa.sobre');
+Route::get('/lojas-mapa', [MapaLojasController::class, 'index'])->middleware('auth')->name('lojas-mapa');
+Route::get('/alimentos/maca', [AlimentosController::class, 'mostrarMaca'])->name('alimentos.maca');
+Route::get('/alimentos', [App\Http\Controllers\AlimentosController::class, 'index'])
+    ->name('alimentos.index');
