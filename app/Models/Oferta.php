@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Oferta extends Model
 {
     //
-    use HasFactory;
+    protected $fillable = ['produto_id', 'loja_id', 'preco', 'data_oferta', 'url_oferta', 'disponibilidade'];
 
-    protected $fillable = ['produto_id', 'loja_id', 'precos', 'link', 'disponibilidade', 'custo_frete', 'pagamento'];
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class);
+    }
+
+    public function loja()
+    {
+        return $this->belongsTo(Loja::class);
+    }
 }

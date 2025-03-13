@@ -10,12 +10,10 @@ class Produto extends Model
     protected $table = 'produtos';
 
     // Define os campos que podem ser preenchidos em massa
-    protected $fillable = [
-        'nome',
-        'marca',
-        'categoria',
-        'descricao',
-        'preco',
-        'imagem',
-    ];
+    protected $fillable = ['nome', 'descricao', 'categoria', 'marca', 'imagem_url'];
+
+    public function ofertas()
+    {
+        return $this->hasMany(Oferta::class);
+    }
 }

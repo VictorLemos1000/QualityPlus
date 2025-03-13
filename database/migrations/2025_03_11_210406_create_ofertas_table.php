@@ -12,15 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orfetas', function (Blueprint $table) {
+        Schema::create('ofertas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produto_id')->constrained('produtos')->onDelete('cascade');
-            $table->foreignId('loja_id')->constrained('lojas')->onDelete('cascade');
-            $table->decimal('precos', 10, 2);
-            $table->string('link');
-            $table->string('disponibilidade');
-            $table->decimal('custo_frete', 10, 2)->nullable();
-            $table->string('pagamento');
+            $table->foreignId('produto_id')->constrained()->onDelete('cascade');
+            $table->foreignId('loja_id')->constrained()->onDelete('cascade');
+            $table->decimal('preco', 8, 2);
+            $table->dateTime('data_oferta');
+            $table->string('url_oferta');
+            $table->boolean('disponibilidade')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orfetas');
+        Schema::dropIfExists('ofertas');
     }
 };

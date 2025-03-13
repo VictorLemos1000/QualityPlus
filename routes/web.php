@@ -1,18 +1,19 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OfertaController;
+
 use App\Http\Controllers\LojaController;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\ProdutoContoller;
+#use App\Http\Controllers\ProdutoContoller;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/perfil', [ProfileController::class, 'index'])->name('perfil');
@@ -54,25 +55,22 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 Route::post('/avaliar-item', [AvaliacaoController::class, 'avaliarItem'])->middleware('auth')->name('avaliar-item');
 Route::get('/empresa/{id}/sobre', [EmpresaController::class, 'sobre'])->name('empresa.sobre');
 
-// Rotas para produtos
-Route::apiResource('produto', ProdutoContoller::class);
-Route::get('/produto', [App\Http\Controllers\ProdutoContoller::class, 'index'])->name('produto.index');
-Route::get('/produto/create', [App\Http\Controllers\ProdutoContoller::class, 'create'])->name('produto.create');
-Route::post('/produto', [ProdutoContoller::class, 'store'])->name('produto.store');
-Route::get('/produto/{id}', [App\Http\Controllers\ProdutoContoller::class, 'show'])->name('produto.show');
-Route::get('/produto/{id}/edit', [App\Http\Controllers\ProdutoContoller::class, 'update'])->name('produto.edit');
-Route::put('/produto/{id}', [ProdutoContoller::class, 'update'])->name('produto.update');
-Route::delete('produto/{id}', [ProdutoContoller::class, 'destroy'])->name('produto.destroy');
+// Rotas para Lojas
+Route::apiResource('lojas', LojaController::class);
 
-// Rotas para loja
-Route::resource('lojas', LojaController::class);
-Route::get('/lojas', [LojaController::class, 'index'])->name('lojas.index');
-Route::get('/lojas/create', [LojaController::class, 'create'])->name('lojas.create');
-Route::post('/lojas', [LojaController::class, 'store'])->name('lojas.store');
-Route::get('/lojas/{id}', [LojaController::class, 'show'])->name('lojas.show');
-Route::get('/lojas/{id}/edit', [LojaController::class, 'edit'])->name('lojas.edit');
-Route::put('/lojas/{id}', [LojaController::class, 'update'])->name('lojas.update');
-Route::delete('/lojas/{id}', [LojaController::class, 'destroy'])->name('lojas.destroy');
+// Rotas para Produtos
+Route::apiResource('produtos', ProdutoController::class);
+Route::get('produtos/buscar', [ProdutoController::class, 'buscar'])->name('produtos.buscar');
+Route::get('/produtos/{id}/historico', [ProdutoController::class, 'historico'])->name('produtos.historico');
+Route::get('/produtos/{id}/historico', [ProdutoController::class, 'historico'])->name('produtos.historico');
+// Rotas para Ofertas
+Route::apiResource('ofertas', OfertaController::class);
+Route::get('/ofertas/create', [OfertaController::class, 'create'])->name('ofertas.create');
+Route::post('/ofertas', [OfertaController::class, 'store'])->name('ofertas.store');
+
+// Rota para o comparador de produto
+Route::get('/comparador', [ProdutoController::class, 'compararPrecos'])
+    ->name('comparador.index');
 
 Auth::routes();
 

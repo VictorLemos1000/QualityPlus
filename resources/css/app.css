@@ -12,7 +12,7 @@
 
 /* Fundo com gradiente */
 body {
-    background: linear-gradient(to bottom, #00B88A, #006BE6);
+    background: linear-gradient(to bottom, #00b88a, #006be6);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -26,8 +26,8 @@ body {
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    padding: 40px;   /* aumento do padding */
-    margin: 30px auto;  /* aumento da margem */
+    padding: 40px; /* aumento do padding */
+    margin: 30px auto; /* aumento da margem */
 }
 
 /* Cabeçalho */
@@ -50,10 +50,10 @@ header {
     text-decoration: none;
 }
 .logo .green {
-    color: #00B88A;
+    color: #00b88a;
 }
 .logo .blue {
-    color: #006BE6;
+    color: #006be6;
 }
 
 /* Navegação */
@@ -77,12 +77,12 @@ nav a {
     font-weight: bold;
     padding: 12px 20px;
     border-radius: 25px;
-    background: linear-gradient(to right, #006BE6, #008CFF);
+    background: linear-gradient(to right, #006be6, #008cff);
     transition: all 0.3s ease;
     display: inline-block;
 }
 nav a:hover {
-    background: linear-gradient(to right, #008CFF, #006BE6);
+    background: linear-gradient(to right, #008cff, #006be6);
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -146,7 +146,7 @@ nav a:hover {
 
 /* Rodapé (mais bonito e integrado às cores do site) */
 footer {
-    background: linear-gradient(to right, #006BE6, #0052cc);
+    background: linear-gradient(to right, #006be6, #0052cc);
     color: white;
     padding: 20px;
     text-align: center;

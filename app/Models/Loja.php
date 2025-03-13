@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Loja extends Model
 {
     //
-    use HasFactory;
+    protected $fillable = ['nome', 'url', 'avaliacao', 'localizacao'];
 
-    protected $fillable = ['nome', 'url', 'avaliacao'];
+    public function ofertas()
+    {
+        return $this->hasMany(Oferta::class);
+    }
 }

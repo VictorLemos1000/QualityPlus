@@ -4,6 +4,15 @@
 
 @section('content')
 <div class="container dashboard-container">
+    <div class="container">
+        <h1 class="my-4">Bem-vindo ao QualityPlus</h1>
+        <p>Compare preços e encontre as melhores ofertas.</p>
+
+        <!-- Botão para o comparador de preços -->
+        <a href="{{ route('comparador.index') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-balance-scale"></i> Comparador de Preços
+        </a>
+    </div>
     <!-- Cabeçalho com navegação -->
     <header class="d-flex justify-content-between align-items-center header-custom">
     <a href="{{ route('dashboard') }}">
@@ -19,9 +28,9 @@
         <!-- Ícone de perfil e logout -->
         <div class="profile-logout d-flex align-items-center">
     <a href="{{ route('perfil') }}">
-        <img src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}" 
-             alt="Mini Perfil" 
-             class="header-profile-image" 
+        <img src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/Perfil.png') }}"
+             alt="Mini Perfil"
+             class="header-profile-image"
              id="header-profile-image">
     </a>
     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
@@ -31,7 +40,7 @@
                 </button>
             </form>
             </div>
-            
+
 
     </header>
 

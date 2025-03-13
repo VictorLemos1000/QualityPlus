@@ -16,12 +16,8 @@ class OfertaController extends Controller
     public function index()
     {
         //
-        try {
-            $oferta = Oferta::all();
-            return view('ofertas.index', compact('ofertas'));
-        } catch (RuntimeException $excecao) {
-            return back()->withErrors('Erro ao listar ofertas: ' . $excecao);
-        }
+        $ofertas = Oferta::with(['produto', 'loja'])->get();
+        return response()->json($ofertas);
     }
 
     /**
@@ -39,24 +35,17 @@ class OfertaController extends Controller
     public function store(Request $request)
     {
         //
-        try {
-            $request->validate([
-                'produto_id' => 'required|exists:produtos,id',
-                'loja_id' => 'required|exists:lojas,id',
-                'preco' => 'required|numeric|min:0',
-                'link' => 'required|url',
-                'disponibilidade' => 'required|boolean',
-                'custo_frete' => 'nullable|numeric|min:0',
-                'metodo_pagamento' => 'required|string',
-            ]);
+        $request->validate([
+            'produto_id' => 'required|exists:produtos,id',
+            'loja_id' => 'required|exists:lojas,id',
+            'preco' => 'required|numeric',
+            'data_oferta' => 'required|date',
+            'url_oferta' => 'required|url',
+            'disponibilidade' => 'required|boolean',
+        ]);
 
-            Oferta::create($request->all());
-            return redirect()->route('ofertas.index')->with('success', 'Oferta criada com sucesso!');
-        } catch (ValidationException $excecao) {
-            return back()->withErrors($excecao)->withInput();
-        } catch (RuntimeException $excecao) {
-            return back()->withErrors('Erro ao criar oferta: ' . $excecao)->withInput();
-        }
+        $oferta = Oferta::create($request->all());
+        return response()->json($oferta, 201);
     }
 
     /**
@@ -65,14 +54,8 @@ class OfertaController extends Controller
     public function show(string $id)
     {
         //
-         try {
-            $oferta = Oferta::findOrFail($id);
-            return view('ofertas.show', compact('oferta'));
-        } catch (ModelNotFoundException $eexcecao) {
-            return redirect()->route('ofertas.index')->withErrors('Oferta não encontrada.');
-        } catch (RuntimeException $excecao) {
-            return back()->withErrors('Erro ao exibir a oferta: ' . $excecao);
-        }
+        $oferta = Oferta::with(['produto', 'loja'])->findOrFail($id);
+        return response()->json($oferta);
     }
 
     /**
@@ -97,28 +80,19 @@ class OfertaController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        try {
-            $request->validate([
-                'produto_id' => 'required|exists:produtos,id',
-                'loja_id' => 'required|exists:lojas,id',
-                'preco' => 'required|numeric|min:0',
-                'link' => 'required|url',
-                'disponibilidade' => 'required|boolean',
-                'custo_frete' => 'nullable|numeric|min:0',
-                'metodo_pagamento' => 'required|string',
-            ]);
+        $oferta = Oferta::findOrFail($id);
 
-            $oferta = Oferta::findOrFail($id);
-            $oferta->update($request->all());
-            return redirect()->route('ofertas.index')->with('success', 'Oferta atualizada com sucesso!');
-        } catch (ModelNotFoundException $excecao) {
-            return redirect()->route('ofertas.index')->withErrors('Oferta não encontrada.');
-        } catch (ValidationException $excecao) {
-            return back()->withErrors($excecao)->withInput();
-        } catch (RuntimeException $excecao) {
-            return back()->withErrors('Erro ao atualizar a oferta: ' . $excecao)->withInput();
-        }
+        $request->validate([
+            'produto_id' => 'sometimes|exists:produtos,id',
+            'loja_id' => 'sometimes|exists:lojas,id',
+            'preco' => 'sometimes|numeric',
+            'data_oferta' => 'sometimes|date',
+            'url_oferta' => 'sometimes|url',
+            'disponibilidade' => 'sometimes|boolean',
+        ]);
 
+        $oferta->update($request->all());
+        return response()->json($oferta);
     }
 
     /**
@@ -127,14 +101,8 @@ class OfertaController extends Controller
     public function destroy(string $id)
     {
         //
-        try {
-            $oferta = Oferta::findOrFail($id);
-            $oferta->delete();
-            return redirect()->route('ofertas.index')->with('success', 'Oferta deletada com sucesso!');
-        } catch (ModelNotFoundException $excecao) {
-            return redirect()->route('ofertas.index')->withErrors('Oferta não encontrada.');
-        } catch (RuntimeException $excecao) {
-            return back()->withErrors('Erro ao excluir a oferta: ' . $excecao);
-        }
+        $oferta = Oferta::findOrFail($id);
+        $oferta->delete();
+        return response()->json(null, 204);
     }
 }
