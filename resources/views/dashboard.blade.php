@@ -71,7 +71,7 @@
             </div>
         </section>
         @else
-            <p style="text-align:center; color:#666;">Nenhum produto encontrado na categoria "{{ ucfirst($categoria) }}"</p>
+            <p style="text-align:center; color:#666;">Nenhum produto encontrado na categoria </p>
         @endif
     @endif
 

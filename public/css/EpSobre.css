@@ -143,14 +143,18 @@ h2.mt-3.text-center {
 }
 
 /* Botões dentro do card */
+/* Container flex para os botões, centralizado, com espaçamento consistente */
 .card-produto .d-flex.justify-content-center.gap-2 {
+    display: flex !important;
     justify-content: center;
-    gap: 10px;
+    gap: 14px; /* Mantém o gap para espaçamento entre botões */
     margin-top: auto;
+    flex-wrap: wrap; /* Permite quebra de linha se necessário */
 }
 
+/* Base dos botões */
 .btn-custom {
-    padding: 6px 14px;
+    padding: 8px 18px;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
@@ -159,13 +163,16 @@ h2.mt-3.text-center {
     transition: background-color 0.3s ease;
     border: none;
     user-select: none;
+    min-width: 70px;
+    text-align: center;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+
+    /* Remove margin-right para evitar duplicidade com gap no container */
+    margin-right: 0;
 }
 
-.btn-custom:hover {
-    filter: brightness(0.9);
-}
-
-/* Cores específicas dos botões */
+/* Cores dos botões mantidas */
 .btn-custom[style*="background-color: #3490dc"] {
     background-color: #3490dc;
     color: white;
@@ -179,6 +186,12 @@ h2.mt-3.text-center {
 .btn-custom[style*="background-color: #dc3545"] {
     background-color: #dc3545;
     color: white;
+}
+
+/* Corrige espaçamento entre botões, incluindo botão dentro do form */
+.card-produto .d-flex.justify-content-center.gap-2 > form {
+    margin: 0;
+    display: inline-block;
 }
 
 /* Container dos cards - 4 por linha */

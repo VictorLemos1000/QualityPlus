@@ -7,7 +7,7 @@
 <style>
     .container {
         max-width: 1200px;
-        margin: 40px auto;
+        margin: 40px auto 60px;
         padding: 0 15px;
     }
 
@@ -15,14 +15,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
 
-    .header-logo img,
+    .header-logo img {
+        height: 50px;
+        width: auto; /* mantém proporção */
+        cursor: pointer;
+        border-radius: 0; /* sem arredondar */
+        transition: transform 0.3s ease;
+    }
+
     .header-perfil img {
         height: 50px;
+        width: 50px;
         cursor: pointer;
-        border-radius: 8px;
+        border-radius: 50%; /* perfil redondo */
+        object-fit: cover;
         transition: transform 0.3s ease;
     }
 
@@ -31,26 +40,31 @@
         transform: scale(1.05);
     }
 
-    /* Para a logo/perfil no topo que são imagens, deixamos só o clique */
-    .header-perfil {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .header-perfil span {
-        font-weight: 600;
-        color: #004A99;
-    }
-
     /* Grid dos cards */
     .produtos-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
         gap: 24px;
+        padding-bottom: 10px;
+        /* opcional para suavizar scroll */
+        scroll-behavior: smooth;
+    }
+
+    .produtos-grid::-webkit-scrollbar {
+        height: 8px;
+    }
+    .produtos-grid::-webkit-scrollbar-thumb {
+        background: #004A99;
+        border-radius: 4px;
+    }
+    .produtos-grid::-webkit-scrollbar-track {
+        background: #e1e1e1;
+        border-radius: 4px;
     }
 
     .card-produto {
+        flex: 0 0 260px; /* tamanho fixo */
         background: white;
         border-radius: 15px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -59,6 +73,7 @@
         display: flex;
         flex-direction: column;
         transition: transform 0.3s ease;
+        scroll-snap-align: start; /* para snap no scroll */
     }
 
     .card-produto:hover {
@@ -78,26 +93,8 @@
         font-size: 20px;
         font-weight: 700;
         color: #004A99;
-        margin-bottom: 6px;
+        margin-bottom: 12px;
         text-align: center;
-    }
-
-    .card-produto-preco {
-        color: #00B88A;
-        font-weight: 700;
-        font-size: 18px;
-        margin-bottom: 8px;
-        text-align: center;
-    }
-
-    .card-produto-quantidade,
-    .card-produto-categoria,
-    .card-produto-desc {
-        font-size: 14px;
-        color: #555;
-        margin-bottom: 6px;
-        text-align: center;
-        line-height: 1.3;
     }
 
     .btn-custom {
@@ -112,6 +109,7 @@
         transition: background-color 0.3s ease;
         margin-top: auto;
         text-decoration: none;
+        user-select: none;
     }
 
     .btn-custom:hover {
@@ -124,6 +122,11 @@
             flex-direction: column;
             gap: 16px;
             align-items: flex-start;
+        }
+        .produtos-grid {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 20px;
         }
     }
 
@@ -140,7 +143,10 @@
         </div>
         <div class="header-perfil">
             <a href="{{ route('perfil') }}">
-                <img src="{{ asset('images/perfil.png') }}" alt="Perfil Logo">
+                <img 
+                    src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) . '?t=' . uniqid() : asset('images/perfil.png') }}" 
+                    alt="Perfil Logo" 
+                >
             </a>
         </div>
     </div>
@@ -162,22 +168,10 @@
                     </h4>
                     
                     @if($produto->preco)
-                        <p class="card-produto-preco">
+                        <p class="card-produto-preco" style="color: #00B88A; font-weight: 700; font-size: 18px; text-align: center; margin-bottom: 12px;">
                             R$ {{ number_format($produto->preco, 2, ',', '.') }}
                         </p>
                     @endif
-                    
-                    <p class="card-produto-quantidade">
-                        Quantidade disponível: {{ $produto->quantidade }}
-                    </p>
-                    
-                    <p class="card-produto-categoria">
-                        Categoria: {{ ucfirst($produto->categoria) }}
-                    </p>
-                    
-                    <p class="card-produto-desc">
-                        {{ \Illuminate\Support\Str::limit($produto->descricao, 80) }}
-                    </p>
                     
                     <a href="{{ route('produto.show', $produto->id) }}" class="btn-custom">
                         Ver Detalhes
